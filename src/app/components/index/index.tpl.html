@@ -1,0 +1,128 @@
+<main class="indexPage">
+	<nav class="navigation">
+		<h1 class="title">Expense Manager <i class="fa fa-credit-card" aria-hidden="true"></i></h1>
+	</nav>
+	<div class="wrapper">
+		<form class="filters"> 			 
+				<div class="row">
+	        <div class="input-field col s12 m3">
+	          <i class="material-icons prefix"><i class="fa fa-calendar-o" aria-hidden="true"></i>
+</i>
+	          <input type="date" id="afterdate"  ng-model="vm.afterDate">
+	          <label for="afterdate">After</label>
+	        </div>
+	        <div class="input-field col s12 m3">
+	          <i class="material-icons prefix"><i class="fa fa-calendar-o" aria-hidden="true"></i>
+</i>
+	          <input type="date" id="beforedate" ng-model="vm.beforeDate">
+	          <label for="beforedate">Before</label>
+	        </div>
+	         <div class="input-field col s12 m6">
+				 <!-- TODO: NG REPEAT OVER SELECT OPTIONS -->
+	          <i class="material-icons prefix">shop_two</i>
+				 <select name="repeatSelect" id="merchant" ng-model="searchMerchant">
+					 <option value="">All merchants</option>
+					 <option value="Airline">Airline</option>
+					 <option value="Breakfast">Breakfast</option>
+					 <option value="Electronics">Electronics</option>
+					 <option value="Fast food">Fast food</option>
+					 <option value="Hotel">Hotel</option>
+					 <option value="Office supplies">Office supplies</option>
+					 <option value="Parking">Parking</option>
+					 <option value="Rential car">Rential car</option>
+					 <option value="Restaurant">Restaurant</option>
+					 <option value="Ride sharing">Ride sharing</option>
+					 <option value="Shuttle">Shuttle</option>
+					 <option value="Taxi">Taxi</option>
+				 </select>
+	        </div>
+   		 </div>
+   		 <div class="row">
+   		 	<div class="input-field col s12 m3">
+	         <input type="number" id="min" ng-model="vm.minAmount">
+	         <label for="min">Min ($)</label>
+	       </div>
+	       <div class="input-field col s12 m3">
+	          <input type="number" id="max" ng-model="vm.maxAmount">
+	          <label for="max">Max ($)</label>
+	       </div>
+	       <div class="input-field col s12 m6 status">
+	          <p class="filter-sub">Status</p>
+
+	          <div class="checkbox">
+			      	<input type="checkbox" class="filled-in" id="statusnew" ng-model="vm.search.new" ng-true-value="'new'" ng-false-value="" />
+			      	<label for="statusnew">New</label>
+			  </div>
+			  <div class="checkbox">
+			      	<input type="checkbox" class="filled-in" id="statusprogress" ng-model="vm.search.in_progress"  ng-true-value="'in_progress'" ng-false-value=""/>
+			      	<label for="statusprogress">In progres</label>
+			  </div>
+			  <div class="checkbox">
+			      	<input type="checkbox" class="filled-in" id="statusreimbursed" ng-model="vm.search.reimbursed"  ng-true-value="'reimbursed'" ng-false-value=""/>
+			      	<label for="statusreimbursed">Reimbursed</label>
+			  </div>
+ 	       </div>
+   		 </div>
+		</form>
+		<div class="total">
+			<p>Total</p><br>
+			<p>{{vm.totalAmount | currency}}</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="table-wrapper">
+			<table class="bordered">
+				<thead>
+					<tr>
+						<th>
+							<a href="#" ng-click="vm.orderByField='date'; vm.reverseSort = !vm.reverseSort">
+								Date <span ng-show="vm.orderByField == 'date'"><span ng-show="!vm.reverseSort">&nbsp;<i class="fa fa fa-caret-up"></i></span><span ng-show="vm.reverseSort"><i class="fa fa-caret-down"></i></span></span>
+						</th>
+						<th>
+							<a href="#" ng-click="vm.orderByField='merchant'; vm.reverseSort = !vm.reverseSort">
+								Merchant<span ng-show="vm.orderByField == 'merchant'"><span ng-show="!vm.reverseSort">&nbsp;<i class="fa fa fa-caret-up"></i></span><span ng-show="vm.reverseSort"><i class="fa fa-caret-down"></i></span></span>
+						</th>
+						<th>
+							<a href="#" ng-click="vm.orderByField='total'; vm.reverseSort = !vm.reverseSort">
+								Total <span ng-show="vm.orderByField == 'total'"><span ng-show="!vm.reverseSort">&nbsp;<i class="fa fa fa-caret-up"></i></span><span ng-show="vm.reverseSort"><i class="fa fa-caret-down"></i></span></span>
+						</th>
+						<th>
+							<a href="#" ng-click="vm.orderByField='status'; vm.reverseSort = !vm.reverseSort">
+								Status <span ng-show="vm.orderByField == 'status'"><span ng-show="!vm.reverseSort">&nbsp;<i class="fa fa fa-caret-up"></i></span><span ng-show="vm.reverseSort"><i class="fa fa-caret-down"></i></span></span>
+						</th>
+						<th>
+							<a href="#" ng-click="vm.orderByField='comment'; vm.reverseSort = !vm.reverseSort">
+								Comment <span ng-show="vm.orderByField == 'comment'"><span ng-show="!vm.reverseSort">&nbsp;<i class="fa fa fa-caret-up"></i></span><span ng-show="vm.reverseSort"><i class="fa fa-caret-down"></i></span></span>
+						</th>
+					</tr>
+				</thead>
+			</table>
+			<div class="tbody-wrapper">
+			<table class="bordered highlight">
+				<tbody>
+					<tr ng-repeat="data in vm.data | orderBy:vm.orderByField:vm.reverseSort | filter:vm.search.new | filter:vm.search.in_progress | filter:vm.search.reimbursed | filter:searchMerchant | filter:vm.minmaxFilter | filter:vm.dateRangeFilter">
+						<td>{{data.date}}</td>
+						<td>{{data.merchant}}</td>
+						<td>{{data.total | currency}}</td>
+						<td>{{data.status}}</td>
+						<td>{{data.comment}}</td>
+					</tr>
+				</tbody>
+			</table>
+			</div>
+
+
+		</div>
+	</div>
+
+</main>
+<script>
+	 $('#afterdate, #beforedate').pickadate({
+    selectMonths: true,
+    selectYears: 15,
+    format: 'yyyy-mm-dd',
+    formatSubmit: 'yyyy-mm-dd'
+  });
+
+	 $('select').material_select();
+</script>

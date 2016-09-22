@@ -1,0 +1,81 @@
+@import 'https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700';
+.indexPage {
+  height: 100vh;
+  background-color: #F3F3F3; }
+  .indexPage .navigation {
+    height: 10vh;
+    background-color: #37474F; }
+    .indexPage .navigation .title {
+      margin-top: 0;
+      padding: 1%;
+      font-family: "Roboto", sans-serif;
+      color: #ffffff;
+      font-weight: 300;
+      font-size: 2rem; }
+      .indexPage .navigation .title i {
+        color: #80CBC4; }
+  .indexPage .wrapper {
+    display: flex;
+    flex-wrap: wrap; }
+    .indexPage .wrapper .filters {
+      width: 80%;
+      height: 30vh; }
+      .indexPage .wrapper .filters .row {
+        margin: 0; }
+      .indexPage .wrapper .filters .status {
+        position: relative;
+        top: -30px; }
+        .indexPage .wrapper .filters .status .filter-sub {
+          font-family: "Roboto", sans-serif;
+          font-size: 1rem;
+          font-weight: 700;
+          margin-bottom: 0; }
+        .indexPage .wrapper .filters .status .checkbox {
+          display: inline-block;
+          margin: 0 10px; }
+    .indexPage .wrapper .total {
+      width: 20%;
+      padding-top: 3.5%;
+      background-color: #80CBC4;
+      height: 150px;
+      display: flex;
+      align-items: center;
+      flex-direction: column; }
+      .indexPage .wrapper .total p {
+        height: auto;
+        margin: -8px !important;
+        font-family: "Roboto", sans-serif;
+        color: #ffffff;
+        font-size: 2rem;
+        font-weight: 300; }
+        .indexPage .wrapper .total p:first-child {
+          font-size: 1rem;
+          font-weight: 700; }
+  .indexPage .table-wrapper {
+    width: 80%;
+    background-color: #fff;
+    height: 52vh; }
+    .indexPage .table-wrapper thead {
+      background-color: #37474F;
+      color: #999999; }
+      .indexPage .table-wrapper thead tr {
+        width: 100%; }
+        .indexPage .table-wrapper thead tr th {
+          width: 20%;
+          border-radius: 0;
+          font-family: "Roboto", sans-serif;
+          font-size: 1rem; }
+          .indexPage .table-wrapper thead tr th a {
+            color: #999999; }
+    .indexPage .table-wrapper .tbody-wrapper {
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: #fff; }
+      .indexPage .table-wrapper .tbody-wrapper tbody tr td {
+        font-family: "Roboto", sans-serif;
+        font-size: .9rem;
+        width: 20%; }
+
+body {
+  font-size: 62.5%; }
